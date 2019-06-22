@@ -5,7 +5,7 @@
  * A dynamic, browser-based visualization library.
  *
  * @version 4.21.0-SNAPSHOT
- * @date    2019-06-09
+ * @date    2019-06-22
  *
  * @license
  * Copyright (C) 2011-2017 Almende B.V, http://almende.com
@@ -13003,6 +13003,11 @@ RangeItem.prototype._updateDirtyDomComponents = function () {
     // turn off max-width to be able to calculate the real width
     // this causes an extra browser repaint/reflow, but so be it
     this.dom.content.style.maxWidth = 'none';
+
+    if (this.data.color) {
+      this.dom.box.style.backgroundColor = this.data.color.background;
+      this.dom.box.style.borderColor = this.data.color.border;
+    }
   }
 };
 
@@ -20477,6 +20482,13 @@ BoxItem.prototype._updateDirtyDomComponents = function () {
     this.dom.box.className = 'vis-item vis-box' + className;
     this.dom.line.className = 'vis-item vis-line' + className;
     this.dom.dot.className = 'vis-item vis-dot' + className;
+
+    if (this.data.color) {
+      this.dom.dot.style.borderColor = this.data.color.border;
+      this.dom.line.style.borderColor = this.data.color.border;
+      this.dom.box.style.backgroundColor = this.data.color.background;
+      this.dom.box.style.backgroundColor = this.data.color.background;
+    }
   }
 };
 
@@ -20815,6 +20827,11 @@ PointItem.prototype._updateDirtyDomComponents = function () {
     var className = (this.data.className ? ' ' + this.data.className : '') + (this.selected ? ' vis-selected' : '') + (editable ? ' vis-editable' : ' vis-readonly');
     this.dom.point.className = 'vis-item vis-point' + className;
     this.dom.dot.className = 'vis-item vis-dot' + className;
+
+    if (this.data.color) {
+      this.dom.dot.style.backgroundColor = this.data.color.background;
+      this.dom.dot.style.borderColor = this.data.color.border;
+    }
   }
 };
 
@@ -21099,6 +21116,10 @@ BackgroundItem.prototype._updateDirtyDomComponents = function () {
     // update class
     var className = (this.data.className ? ' ' + this.data.className : '') + (this.selected ? ' vis-selected' : '');
     this.dom.box.className = this.baseClassName + className;
+    if (this.data.color) {
+      this.dom.box.style.backgroundColor = this.data.color.background;
+      this.dom.box.style.borderColor = this.data.color.border;
+    }
   }
 };
 
